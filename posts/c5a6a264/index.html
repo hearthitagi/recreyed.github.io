@@ -1,0 +1,664 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ajax | ReCreyed</title><meta name="keywords" content="ajax"><meta name="author" content="ReCreyed"><meta name="copyright" content="ReCreyed"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. ajax简述Asynchronous JavaScript + XML（异步JavaScript和XML）, 其本身不是一种新技术，而是一个在 2005年被Jesse James Garrett提出的新术语，用来描述一种使用现有技术集合的‘新’方法，包括: HTML 或 XHTML,  CSS, JavaScript, DOM, XML, XSLT, 以及最重要的 XMLHttpReques">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax">
+<meta property="og:url" content="https://hitagi.site/posts/c5a6a264/">
+<meta property="og:site_name" content="ReCreyed">
+<meta property="og:description" content="1. ajax简述Asynchronous JavaScript + XML（异步JavaScript和XML）, 其本身不是一种新技术，而是一个在 2005年被Jesse James Garrett提出的新术语，用来描述一种使用现有技术集合的‘新’方法，包括: HTML 或 XHTML,  CSS, JavaScript, DOM, XML, XSLT, 以及最重要的 XMLHttpReques">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.hitagi.site/202211142223334.jpg">
+<meta property="article:published_time" content="2022-02-22T17:04:40.000Z">
+<meta property="article:modified_time" content="2024-01-26T08:36:05.752Z">
+<meta property="article:author" content="ReCreyed">
+<meta property="article:tag" content="ajax">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.hitagi.site/202211142223334.jpg"><link rel="shortcut icon" href="/img/favicon.svg"><link rel="canonical" href="https://hitagi.site/posts/c5a6a264/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playball&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ajax',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-26 08:36:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/avatar-1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 仓库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图片</span></a></li><li><a class="site-page child" href="/picmanage/"><i class="fa-fw fas fa-images"></i><span> 图床</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言信</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><canvas id="universe"></canvas><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.hitagi.site/202211142223334.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ReCreyed</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 仓库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图片</span></a></li><li><a class="site-page child" href="/picmanage/"><i class="fa-fw fas fa-images"></i><span> 图床</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言信</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ajax</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-22T17:04:40.000Z" title="发表于 2022-02-22 17:04:40">2022-02-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-26T08:36:05.752Z" title="更新于 2024-01-26 08:36:05">2024-01-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/">前端知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/c5a6a264/#post-comment"><span class="waline-comment-count" id="/posts/c5a6a264/"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-ajax简述"><a href="#1-ajax简述" class="headerlink" title="1. ajax简述"></a>1. ajax简述</h2><p>Asynchronous JavaScript + XML（异步JavaScript和XML）, 其本身不是一种新技术，而是一个在 2005年被Jesse James Garrett提出的新术语，用来描述一种使用现有技术集合的‘新’方法，包括: HTML 或 XHTML,  CSS, JavaScript, DOM, XML, XSLT, 以及最重要的 XMLHttpRequest。当使用结合了这些技术的AJAX模型以后， 网页应用能够快速地将增量更新呈现在用户界面上，而不需要重载（刷新）整个页面。这使得程序能够更快地回应用户的操作。</p>
+<p>尽管X在Ajax中代表XML, 但由于JSON的许多优势，比如更加轻量以及作为Javascript的一部分，目前JSON的使用比XML更加普遍。JSON和XML都被用于在Ajax模型中打包信息</p>
+<p>异步请求，局部刷新</p>
+<h3 id="1-1-ajax原理"><a href="#1-1-ajax原理" class="headerlink" title="1.1 ajax原理"></a>1.1 ajax原理</h3><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142240223.jpg" alt="ajax原理" style="zoom: 80%;" />
+
+<h2 id="2-ajax语法"><a href="#2-ajax语法" class="headerlink" title="2. ajax语法"></a>2. ajax语法</h2><p>onreadystatechange事件</p>
+<ol>
+<li><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。。</p>
+</li>
+<li><p>每当 readyState 改变时，就会触发 onreadystatechange 事件。</p>
+</li>
+<li><p>readyState 属性存有 XMLHttpRequest 的状态信息。</p>
+</li>
+</ol>
+<h3 id="2-1-ajax状态码"><a href="#2-1-ajax状态码" class="headerlink" title="2.1 ajax状态码"></a>2.1 ajax状态码</h3><table>
+<thead>
+<tr>
+<th>ajax状态码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>(未初始化)还没有调用send()方法</td>
+</tr>
+<tr>
+<td>1</td>
+<td>(载入)已经调用send()方法，正在派发请求</td>
+</tr>
+<tr>
+<td>2</td>
+<td>(载入完成)send()已经执行完成，已经接收到全部的响应内容</td>
+</tr>
+<tr>
+<td>3</td>
+<td>(交互)正在解析响应内容</td>
+</tr>
+<tr>
+<td>4</td>
+<td>(完成)响应内容已经解析完成，用户可以调用</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-http状态码"><a href="#2-2-http状态码" class="headerlink" title="2.2 http状态码"></a>2.2 http状态码</h3><table>
+<thead>
+<tr>
+<th>1xx(临时响应)</th>
+<th>表示临时响应并需要请求者继续执行操作的状态代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100 (继续)</td>
+<td>请求者应当继续提出请求。 服务器返回此代码表示已收到请求的第一部分，正在等待其余部分</td>
+</tr>
+<tr>
+<td>101 (切换协议)</td>
+<td>请求者已要求服务器切换协议，服务器已确认并准备切换</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>2xx (成功)</th>
+<th>表示成功处理了请求的状态代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200 (成功)</td>
+<td>服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页</td>
+</tr>
+<tr>
+<td>201 (已创建)</td>
+<td>请求成功并且服务器创建了新的资源</td>
+</tr>
+<tr>
+<td>202 (已接受)</td>
+<td>服务器已接受请求，但尚未处理</td>
+</tr>
+<tr>
+<td>203 (非授权信息)</td>
+<td>服务器已成功处理了请求，但返回的信息可能来自另一来源</td>
+</tr>
+<tr>
+<td>204 (无内容)</td>
+<td>服务器成功处理了请求，但没有返回任何内容</td>
+</tr>
+<tr>
+<td>205 (重置内容)</td>
+<td>服务器成功处理了请求，但没有返回任何内容</td>
+</tr>
+<tr>
+<td>206 (部分内容)</td>
+<td>服务器成功处理了部分 GET 请求</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>3xx (重定向)</th>
+<th>表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>300 (多种选择)</td>
+<td>针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择</td>
+</tr>
+<tr>
+<td>301 (永久移动)</td>
+<td>请求的网页已永久移动到新位置。 服务器返回此响应(对 GET 或 HEAD 请求的响应)时，会自动将请求者转到新位置</td>
+</tr>
+<tr>
+<td>302 (临时移动)</td>
+<td>服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求</td>
+</tr>
+<tr>
+<td>303 (查看其他位置)</td>
+<td>请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码</td>
+</tr>
+<tr>
+<td>304 (未修改)</td>
+<td>自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容</td>
+</tr>
+<tr>
+<td>305 (使用代理)</td>
+<td>请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理</td>
+</tr>
+<tr>
+<td>307 (临时重定向)</td>
+<td>服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>4xx(请求错误)</th>
+<th>这些状态代码表示请求可能出错，妨碍了服务器的处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>400 (错误请求)</td>
+<td>服务器不理解请求的语法</td>
+</tr>
+<tr>
+<td>401 (未授权)</td>
+<td>请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应</td>
+</tr>
+<tr>
+<td>403 (禁止)</td>
+<td>服务器拒绝请求</td>
+</tr>
+<tr>
+<td>404 (未找到)</td>
+<td>服务器找不到请求的网页</td>
+</tr>
+<tr>
+<td>405 (方法禁用)</td>
+<td>禁用请求中指定的方法</td>
+</tr>
+<tr>
+<td>406 (不接受)</td>
+<td>无法使用请求的内容特性响应请求的网页</td>
+</tr>
+<tr>
+<td>407 (需要代理授权)</td>
+<td>此状态代码与 401(未授权)类似，但指定请求者应当授权使用代理</td>
+</tr>
+<tr>
+<td>408 (请求超时)</td>
+<td>服务器等候请求时发生超时</td>
+</tr>
+<tr>
+<td>409 (冲突)</td>
+<td>服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息</td>
+</tr>
+<tr>
+<td>410 (已删除)</td>
+<td>如果请求的资源已永久删除，服务器就会返回此响应</td>
+</tr>
+<tr>
+<td>411 (需要有效长度)</td>
+<td>服务器不接受不含有效内容长度标头字段的请求</td>
+</tr>
+<tr>
+<td>412 (未满足前提条件)</td>
+<td>服务器未满足请求者在请求中设置的其中一个前提条件</td>
+</tr>
+<tr>
+<td>413 (请求实体过大)</td>
+<td>服务器无法处理请求，因为请求实体过大，超出服务器的处理能力</td>
+</tr>
+<tr>
+<td>414 (请求的 URI 过长)</td>
+<td>请求的 URI(通常为网址)过长，服务器无法处理</td>
+</tr>
+<tr>
+<td>415 (不支持的媒体类型)</td>
+<td>请求的格式不受请求页面的支持</td>
+</tr>
+<tr>
+<td>416 (请求范围不符合要求)</td>
+<td>如果页面无法提供请求的范围，则服务器会返回此状态代码</td>
+</tr>
+<tr>
+<td>417 (未满足期望值)</td>
+<td>服务器未满足”期望”请求标头字段的要求</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>5xx(服务器错误)</th>
+<th>这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>500 (服务器内部错误)</td>
+<td>服务器遇到错误，无法完成请求</td>
+</tr>
+<tr>
+<td>501 (尚未实施)</td>
+<td>服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码</td>
+</tr>
+<tr>
+<td>502 (错误网关)</td>
+<td>服务器作为网关或代理，从上游服务器收到无效响应</td>
+</tr>
+<tr>
+<td>503 (服务不可用)</td>
+<td>服务器目前无法使用(由于超载或停机维护)。 通常，这只是暂时状态</td>
+</tr>
+<tr>
+<td>504 (网关超时)</td>
+<td>服务器作为网关或代理，但是没有及时从上游服务器收到请求</td>
+</tr>
+<tr>
+<td>505 (HTTP 版本不受支持)</td>
+<td>服务器不支持请求中所用的 HTTP 协议版本</td>
+</tr>
+</tbody></table>
+<h3 id="2-3-实例"><a href="#2-3-实例" class="headerlink" title="2.3 实例"></a>2.3 实例</h3><p>以下通过实例的方式来演示ajax原生使用</p>
+<ul>
+<li>get请求</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&#x27;myDiv&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="comment">// 兼容性处理</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> xmlhttp;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">XMLHttpRequest</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// IE7+,和其他浏览器</span></span></span><br><span class="line"><span class="language-javascript">    xmlhttp = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span></span><br><span class="line"><span class="language-javascript">&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// IE5,IE6</span></span></span><br><span class="line"><span class="language-javascript">    xmlhttp = <span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&#x27;Microsoft.XMLHTTP&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"><span class="comment">//ajax打开链接</span></span></span><br><span class="line"><span class="language-javascript">xmlhttp.<span class="title function_">open</span>(</span></span><br><span class="line"><span class="language-javascript">    <span class="string">&quot;GET&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="string">&quot;http://wkt.myhope365.com/weChat/applet/course/banner/list?number=3&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">);</span></span><br><span class="line"><span class="language-javascript"><span class="comment">//ajax发送请求</span></span></span><br><span class="line"><span class="language-javascript">xmlhttp.<span class="title function_">send</span>();</span></span><br><span class="line"><span class="language-javascript"><span class="comment">//检测请求状态</span></span></span><br><span class="line"><span class="language-javascript">xmlhttp.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (xmlhttp.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xmlhttp.<span class="property">status</span> == <span class="number">200</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> imgList = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(xmlhttp.<span class="property">responseText</span>).<span class="property">data</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(imgList);</span></span><br><span class="line"><span class="language-javascript">        imgList.<span class="title function_">forEach</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            $(<span class="string">&#x27;#myDiv&#x27;</span>)[<span class="number">0</span>].<span class="property">innerHTML</span> += <span class="string">`&lt;img src=<span class="subst">$&#123;value.imgUrl&#125;</span>&gt;`</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>post请求</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&#x27;myDiv&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="comment">// 兼容性处理</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> xmlhttp;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">XMLHttpRequest</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// IE7+,和其他浏览器</span></span></span><br><span class="line"><span class="language-javascript">    xmlhttp = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span></span><br><span class="line"><span class="language-javascript">&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// IE5,IE6</span></span></span><br><span class="line"><span class="language-javascript">    xmlhttp = <span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&#x27;Microsoft.XMLHTTP&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"><span class="comment">//ajax打开链接</span></span></span><br><span class="line"><span class="language-javascript">xmlhttp.<span class="title function_">open</span>(</span></span><br><span class="line"><span class="language-javascript">    <span class="string">&quot;POST&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="string">&quot;http://wkt.myhope365.com//weChat/applet/course/list/type&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">);</span></span><br><span class="line"><span class="language-javascript"><span class="comment">// ajax设置请求头</span></span></span><br><span class="line"><span class="language-javascript">xmlhttp.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript"><span class="comment">//ajax发送请求</span></span></span><br><span class="line"><span class="language-javascript">xmlhttp.<span class="title function_">send</span>(<span class="string">&quot;type=free&amp;pageNum=1&amp;pageSize=5&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"><span class="comment">//检测请求状态</span></span></span><br><span class="line"><span class="language-javascript">xmlhttp.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (xmlhttp.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xmlhttp.<span class="property">status</span> == <span class="number">200</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">JSON</span>.<span class="title function_">parse</span>(xmlhttp.<span class="property">responseText</span>).<span class="property">rows</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="title class_">JSON</span>.<span class="title function_">parse</span>(xmlhttp.<span class="property">responseText</span>).<span class="property">rows</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            $(<span class="string">&#x27;#myDiv&#x27;</span>)[<span class="number">0</span>].<span class="property">innerHTML</span> += <span class="string">`&lt;dl class=&quot;course&quot;&gt;&lt;dt&gt;&lt;img src=&quot;<span class="subst">$&#123;item.coverFileUrl&#125;</span>&quot;alt=&quot;&quot; /&gt;&lt;/dt&gt;&lt;dt&gt;<span class="subst">$&#123;item.courseTitle&#125;</span>&lt;/dt&gt;&lt;dt&gt;共<span class="subst">$&#123;item.learningNum&#125;</span>节课|<span class="subst">$&#123;item.participationsCount&#125;</span>人报名&lt;/dt&gt;&lt;dt&gt;免费&lt;/dt&gt;&lt;/dl&gt;`</span></span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-引入jQuery的ajax实例"><a href="#3-引入jQuery的ajax实例" class="headerlink" title="3. 引入jQuery的ajax实例"></a>3. 引入jQuery的ajax实例</h2><h3 id="3-1-jquery-get"><a href="#3-1-jquery-get" class="headerlink" title="3.1 jquery-get"></a>3.1 jquery-get</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&#x27;box&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    $.<span class="title function_">get</span>(</span></span><br><span class="line"><span class="language-javascript">        <span class="string">&#x27;http://wkt.myhope365.com/weChat/applet/course/banner/list?number=5&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> (<span class="params">data, status</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span> (status == <span class="string">&#x27;success&#x27;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                data.<span class="property">data</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                    $(<span class="string">&#x27;#box&#x27;</span>).<span class="title function_">append</span>(<span class="string">`&lt;img src=&quot;<span class="subst">$&#123;item.imgUrlPc&#125;</span>&quot; alt=&quot;&quot;&gt;`</span>)</span></span><br><span class="line"><span class="language-javascript">                &#125;);</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    )</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-jquery-post"><a href="#3-2-jquery-post" class="headerlink" title="3.2 jquery-post"></a>3.2 jquery-post</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&#x27;box&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// $.post()请求不能设置JOSN格式的请求头，所以请求头类型是JSON格式的话需要用$.ajax()</span></span></span><br><span class="line"><span class="language-javascript">    $.<span class="title function_">post</span>(</span></span><br><span class="line"><span class="language-javascript">        <span class="string">&quot;http://wkt.myhope365.com/weChat/applet/course/list/type&quot;</span>, <span class="string">&quot;type=free&amp;pageNum=1&amp;pageSize=10&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> (<span class="params">data, status</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span> (status == <span class="string">&quot;success&quot;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                data.<span class="property">rows</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(item.<span class="property">courseTitle</span>);</span></span><br><span class="line"><span class="language-javascript">                &#125;);</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    );</span></span><br><span class="line"><span class="language-javascript">    $.<span class="title function_">ajax</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">url</span>: <span class="string">&#x27;http://wkt.myhope365.com/weChat/applet/subject/list&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">type</span>: <span class="string">&#x27;POST&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">data</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="attr">enable</span>: <span class="number">1</span> &#125;),</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">contentType</span>: <span class="string">&#x27;application/json&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params">res, status</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            res.<span class="property">rows</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                $(<span class="string">&#x27;#box&#x27;</span>)[<span class="number">0</span>].<span class="property">innerHTML</span> += <span class="string">`&lt;p&gt;<span class="subst">$&#123;item.title&#125;</span>&lt;/p&gt;`</span></span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>ajax方法对象参数属性列表</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>url</td>
+<td>规定发送请求的 URL。默认是当前页面</td>
+</tr>
+<tr>
+<td>type</td>
+<td>规定请求的类型（GET 或 POST</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>设置本地的请求超时时间（以毫秒计）</td>
+</tr>
+<tr>
+<td>async</td>
+<td>布尔值，表示请求是否异步处理。默认是 true</td>
+</tr>
+<tr>
+<td>cache</td>
+<td>布尔值，表示浏览器是否缓存被请求页面。默认是 true</td>
+</tr>
+<tr>
+<td>data</td>
+<td>规定要发送到服务器的数据</td>
+</tr>
+<tr>
+<td>dataType</td>
+<td>预期的服务器响应的数据类型</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>发送数据到服务器时所使用的内容类型。默认是：”application/x-www-form-urlencoded”</td>
+</tr>
+</tbody></table>
+<h2 id="4-json"><a href="#4-json" class="headerlink" title="4. json"></a>4. json</h2><p>JSON 是存储和交换文本信息的语法。类似 XML。</p>
+<p>JSON 比 XML 更小、更快，更易解析。</p>
+<p>JSON 是轻量级的文本数据交换格式</p>
+<h3 id="4-1-JSON-parse和JSON-stringify"><a href="#4-1-JSON-parse和JSON-stringify" class="headerlink" title="4.1 JSON.parse和JSON.stringify"></a>4.1 JSON.parse和JSON.stringify</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="string">&#x27;&#123; &quot;name&quot;:&quot;vivy&quot;, &quot;ability&quot;:&quot;sing&quot;&#125;&#x27;</span>)<span class="comment">//将字符串传话为JSON对象</span></span><br><span class="line"><span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="string">&quot;name&quot;</span>:<span class="string">&quot;vivy&quot;</span>, <span class="string">&quot;ability&quot;</span>:<span class="string">&quot;sing&quot;</span>&#125;);<span class="comment">//将JSON对象转化为字符串</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-JSONP"><a href="#4-2-JSONP" class="headerlink" title="4.2 JSONP"></a>4.2 JSONP</h3><p>JSON的一种使用模式，用来解决跨域问题；</p>
+<ul>
+<li>同源策略</li>
+</ul>
+<p>同源即协议、域名、端口号都相同。<code>http://</code>(同为http协议)<code>recreyed.com</code>(相同域名):<code>7070</code>(相同端口号)</p>
+<p>随着互联网的发展，”同源政策”越来越严格。目前，如果非同源，共有三种行为受到限制。</p>
+<blockquote>
+<p>（1） Cookie、LocalStorage 和 IndexDB 无法读取。</p>
+<p>（2） DOM 无法获得。</p>
+<p>（3） AJAX 请求不能发送。</p>
+</blockquote>
+<ul>
+<li>跨域</li>
+</ul>
+<p>解决跨域问题的三种主要方式：</p>
+<p>后台放开；jsonp；配置代理</p>
+<p>后台放开:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">response.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>以后应该会写一篇解决跨域的总结</p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>ajax</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://hitagi.site/posts/c5a6a264/">https://hitagi.site/posts/c5a6a264/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>ReCreyed</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2022-02-22</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-01-26</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ajax/">ajax</a></div><div class="post_share"></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://img.hitagi.site/reward-wx.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/reward-wx.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://img.hitagi.site/reward-ali.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/reward-ali.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/38409243/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ES6基础 04</div></div></a></div><div class="next-post pull-right"><a href="/posts/d352c4d3/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Bootstrap</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/avatar-1.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ReCreyed</div><div class="author-info__description">不可结缘  徒增伤悲</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/recreyed" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:recreyed@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ajax%E7%AE%80%E8%BF%B0"><span class="toc-text">1. ajax简述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-ajax%E5%8E%9F%E7%90%86"><span class="toc-text">1.1 ajax原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-ajax%E8%AF%AD%E6%B3%95"><span class="toc-text">2. ajax语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-ajax%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-text">2.1 ajax状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-http%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-text">2.2 http状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%AE%9E%E4%BE%8B"><span class="toc-text">2.3 实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%BC%95%E5%85%A5jQuery%E7%9A%84ajax%E5%AE%9E%E4%BE%8B"><span class="toc-text">3. 引入jQuery的ajax实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-jquery-get"><span class="toc-text">3.1 jquery-get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-jquery-post"><span class="toc-text">3.2 jquery-post</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-json"><span class="toc-text">4. json</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-JSON-parse%E5%92%8CJSON-stringify"><span class="toc-text">4.1 JSON.parse和JSON.stringify</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-JSONP"><span class="toc-text">4.2 JSONP</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By ReCreyed</div><div class="footer_custom_text">Violet Evergarden</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://npm.elemecdn.com/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://npm.elemecdn.com/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://npm.elemecdn.com/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = new Waline(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://comment.hitagi.site',
+      path: location.pathname,
+      visitor: false,
+      dark: 'html[data-theme="dark"]'
+    }, {"imageUploader":false}))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else getScript('https://npm.elemecdn.com/@waline/client/dist/Waline.min.js').then(initWaline)
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const loadWaline = () => {
+      Waline.Widget.RecentComments({
+        serverURL: 'https://comment.hitagi.site',
+        count: 5
+      }).then(res => {
+        const walineArray = res.comments.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.insertedAt,
+          }
+        })
+        saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+        generateHtml(walineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+    }
+
+    if (typeof Waline === 'function') loadWaline() 
+    else getScript('https://npm.elemecdn.com/@waline/client/dist/Waline.min.js').then(loadWaline)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="/js/selectBg.js"></script><script async data-pjax src="/js/dark.js"></script><script src="https://npm.elemecdn.com/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div><!-- hexo injector body_end start --><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInUp');
+    arr[i].setAttribute('data-wow-duration', '0.5s');
+    arr[i].setAttribute('data-wow-delay', '0');
+    arr[i].setAttribute('data-wow-offset', '50');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInUp');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html>

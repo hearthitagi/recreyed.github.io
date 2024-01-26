@@ -1,0 +1,380 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>angular基础 01 | ReCreyed</title><meta name="keywords" content="angular"><meta name="author" content="ReCreyed"><meta name="copyright" content="ReCreyed"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="demo项目地址:angular-demo 组件插槽 组件中引入具名插槽&lt;ng-content select&#x3D;&quot;[slot]&quot;&gt;&lt;&#x2F;ng-content&gt;   父组件的子组件标签中写入插槽内容&lt;app-a-zujian&gt;  &lt;p slot&gt;这是具名插槽&lt;&#x2F;p&gt;&lt;&#x2F;app-a-zujian&gt;  父子传值父传">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular基础 01">
+<meta property="og:url" content="https://hitagi.site/posts/cb24f466/">
+<meta property="og:site_name" content="ReCreyed">
+<meta property="og:description" content="demo项目地址:angular-demo 组件插槽 组件中引入具名插槽&lt;ng-content select&#x3D;&quot;[slot]&quot;&gt;&lt;&#x2F;ng-content&gt;   父组件的子组件标签中写入插槽内容&lt;app-a-zujian&gt;  &lt;p slot&gt;这是具名插槽&lt;&#x2F;p&gt;&lt;&#x2F;app-a-zujian&gt;  父子传值父传">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.hitagi.site/202211142223334.jpg">
+<meta property="article:published_time" content="2022-03-19T20:31:01.000Z">
+<meta property="article:modified_time" content="2022-04-12T16:30:18.000Z">
+<meta property="article:author" content="ReCreyed">
+<meta property="article:tag" content="angular">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.hitagi.site/202211142223334.jpg"><link rel="shortcut icon" href="/img/favicon.svg"><link rel="canonical" href="https://hitagi.site/posts/cb24f466/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playball&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'angular基础 01',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-12 16:30:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/avatar-1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 仓库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图片</span></a></li><li><a class="site-page child" href="/picmanage/"><i class="fa-fw fas fa-images"></i><span> 图床</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言信</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><canvas id="universe"></canvas><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.hitagi.site/202211142223334.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ReCreyed</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 仓库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图片</span></a></li><li><a class="site-page child" href="/picmanage/"><i class="fa-fw fas fa-images"></i><span> 图床</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言信</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">angular基础 01</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-19T20:31:01.000Z" title="发表于 2022-03-19 20:31:01">2022-03-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-12T16:30:18.000Z" title="更新于 2022-04-12 16:30:18">2022-04-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/">前端知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/cb24f466/#post-comment"><span class="waline-comment-count" id="/posts/cb24f466/"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142239481.png" alt="angular思维图(简)"></p>
+<p>demo项目地址:<a target="_blank" rel="noopener" href="https://github.com/recreyed/angular-demo">angular-demo</a></p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><h3 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h3><ol>
+<li>组件中引入具名插槽<br><code>&lt;ng-content select=&quot;[slot]&quot;&gt;&lt;/ng-content&gt;</code>  </li>
+<li>父组件的子组件标签中写入插槽内容<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">app-a-zujian</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">slot</span>&gt;</span>这是具名插槽<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">app-a-zujian</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="父子传值"><a href="#父子传值" class="headerlink" title="父子传值"></a>父子传值</h3><h4 id="父传子-Input"><a href="#父传子-Input" class="headerlink" title="父传子@Input"></a>父传子@Input</h4><ol>
+<li>子组件定义接受数据的变量<br><code>@Input() name: string;</code></li>
+<li>父组件通过属性型绑定传递数据 <code>[name] = &quot;数据&quot;</code>,<code>[name]</code> 是子组件中定义的接受数据的变量<br><code>&lt;app-a-zujian [name]=&#39;fatherData&#39;&gt;&lt;/app-a-zujian&gt;</code><h4 id="子传父EventEmitter"><a href="#子传父EventEmitter" class="headerlink" title="子传父EventEmitter"></a>子传父EventEmitter</h4></li>
+<li>子组件创建事件发射器,并通过时间发射器传递数据<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">@<span class="title class_">Output</span>() toFather = <span class="keyword">new</span> <span class="title class_">EventEmitter</span>()</span><br><span class="line"></span><br><span class="line"><span class="title function_">someToFather</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//触发someToFather事件时,传递数据</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">toFather</span>.<span class="title function_">emit</span>(<span class="variable language_">this</span>.<span class="property">data</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<code>&lt;button (click)=&#39;someToFather()&#39;&gt;EventEmitter子传父&lt;/button&gt;</code></li>
+<li>绑定<code>(toFather)</code>时间发射器,通过$event接受传递的参数  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">fromSon</span>(data): <span class="keyword">void</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<code>&lt;app-a-zujian (toFather)=&quot;fromSon($event)&quot;&gt;&lt;/app-a-zujian&gt;</code>  <h4 id="子传父模板引用-推荐"><a href="#子传父模板引用-推荐" class="headerlink" title="子传父模板引用(推荐)"></a>子传父模板引用(推荐)</h4></li>
+<li>父组件标记子组件模板<br><code>&lt;app-a-zujian #child&gt;&lt;/app-a-zujian&gt;</code></li>
+<li>父组件引用子组件方法或数据<br><code>&lt;div&gt;子传父模板引用----&#123;&#123;child.mobanData&#125;&#125;&lt;/div&gt;</code><h4 id="子传父-ViewChild-推荐"><a href="#子传父-ViewChild-推荐" class="headerlink" title="子传父@ViewChild(推荐)"></a>子传父@ViewChild(推荐)</h4></li>
+<li>父组件ts中引入子组件模板<br><code>@ViewChild(&quot;child&quot;) childData;</code></li>
+<li>父组件ts中获得子组件方法或数据<br><code>getSon(): void &#123; console.log(this.childData.viewData) &#125;</code><h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><h3 id="插值表达式"><a href="#插值表达式" class="headerlink" title="插值表达式"></a>插值表达式</h3><code>&#123;&#123;data&#125;&#125;</code><h3 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h3></li>
+</ol>
+<ul>
+<li>内置管道<br>Date：格式化日期<br>UpperCase：转化为大写<br>LowerCase：转化为小写<br>Currency：把数字转换成金额字符串<br>Percent：把数字转换成百分比字符串<br>Json：把一个值转换成 JSON 字符串格式。在调试时很有用。  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>使用参数格式化日期： &#123;&#123; dateTime | date:&quot;yyy/MM/dd&quot; &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 特殊的映射管道:i18nPlural --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; sex | i18nPlural: sexMapping &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 管道数据映射</span></span><br><span class="line">public <span class="attr">sex</span>: string = <span class="string">&#x27;2&#x27;</span>;</span><br><span class="line"><span class="attr">sexMapping</span>: &#123; [<span class="attr">k</span>: string]: string &#125; = &#123; <span class="string">&#x27;=1&#x27;</span>: <span class="string">&#x27;男&#x27;</span>, <span class="string">&#x27;=2&#x27;</span>: <span class="string">&#x27;女&#x27;</span>, <span class="string">&#x27;other&#x27;</span>: <span class="string">&#x27;其他&#x27;</span> &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="结构型指令"><a href="#结构型指令" class="headerlink" title="结构型指令"></a>结构型指令</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">&quot;isActive&quot;</span>&gt;</span>*ngIf 变量为true时显示<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>*ngFor<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let item of arrayList; let key = index&quot;</span>&gt;</span></span><br><span class="line">  &#123;&#123;key&#125;&#125;:&#123;&#123;item&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">ngSwitch</span>]=<span class="string">&quot;htmltags&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>[ngSwitch]<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngSwitchCase</span>=<span class="string">&quot;&#x27;div&#x27;&quot;</span>&gt;</span>div标签<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> *<span class="attr">ngSwitchCase</span>=<span class="string">&quot;&#x27;span&#x27;&quot;</span>&gt;</span>span标签<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> *<span class="attr">ngSwitchDefault</span>&gt;</span>a标签<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="属性型指令"><a href="#属性型指令" class="headerlink" title="属性型指令"></a>属性型指令</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 如果flag变量为true 将会添加current类,否则移除 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">class.current</span>]=<span class="string">&quot;flag&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 使用简单的表达式,表达式为true则添加selected类,否则移除 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">class.selected</span>]=<span class="string">&quot;hero == 0&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 使用三元运算符,flag变量为true添加item01类,否则添加item02类 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">ngClass</span>]=<span class="string">&quot;flag?&#x27;item01&#x27;:&#x27;item02&#x27;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 使用对象 对象中的每个 key 都是一个 CSS 类名，如果它的 value 是 true,这个类就会被添加，否则就会被移除。 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">ngClass</span>]=<span class="string">&quot;cssObj&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 如果flag变量为true 将会添加“#000”颜色值,否则添加“#fff”值。 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">style.color</span>]=<span class="string">&quot;flag? &#x27;#000&#x27; : &#x27;#fff&#x27;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 带单位的样式绑定 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">style.padding.px</span>]=<span class="string">&quot;isSpecial&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="模板驱动表单"><a href="#模板驱动表单" class="headerlink" title="模板驱动表单"></a>模板驱动表单</h3><code>&lt;input type=&quot;text&quot; [(ngModel)]=&quot;value3&quot;&gt;&#123;&#123;value3&#125;&#125;</code><h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2>第一步 导入  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// app.module.ts中</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Routes</span>, <span class="title class_">RouterModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line">@<span class="title class_">NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    <span class="title class_">RouterModule</span>.<span class="title function_">forRoot</span>(routes),</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+第二步  定义<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// app.module.ts中</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">routes</span>: <span class="title class_">Routes</span> = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">redirectTo</span>: <span class="string">&#x27;index&#x27;</span>, <span class="attr">pathMatch</span>: <span class="string">&#x27;full&#x27;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;biaodan&#x27;</span>, <span class="attr">component</span>: <span class="title class_">EBiaodanComponent</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;index&#x27;</span>, <span class="attr">component</span>: <span class="title class_">AppComponent</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;**&#x27;</span>, <span class="attr">component</span>: <span class="title class_">NotFoundComponent</span> &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+第三步 置入<br><code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code><h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2>使用前先导入所需要的控件<h3 id="单个表单"><a href="#单个表单" class="headerlink" title="单个表单"></a>单个表单</h3><code>public name = new FormControl(&quot;&quot;);</code><h3 id="表单组"><a href="#表单组" class="headerlink" title="表单组"></a>表单组</h3></li>
+<li>使用FormBuilder生成表单<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用前先注入FormBuilder服务</span></span><br><span class="line"><span class="title function_">constructor</span>(<span class="params">private fb: FormBuilder</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">public profileForm = <span class="variable language_">this</span>.<span class="property">fb</span>.<span class="title function_">group</span>(&#123;</span><br><span class="line">    <span class="attr">firstName</span>: [<span class="string">&#x27;&#x27;</span>, <span class="title class_">Validators</span>.<span class="property">required</span>],</span><br><span class="line">    <span class="attr">address</span>: <span class="variable language_">this</span>.<span class="property">fb</span>.<span class="title function_">group</span>(&#123;</span><br><span class="line">      <span class="attr">street</span>: [<span class="string">&#x27;&#x27;</span>,],</span><br><span class="line">      <span class="attr">city</span>: [<span class="string">&#x27;&#x27;</span>],</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></li>
+<li>FormArray动态表单<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">public profileForm = <span class="variable language_">this</span>.<span class="property">fb</span>.<span class="title function_">group</span>(&#123;</span><br><span class="line">    <span class="attr">aliases</span>: <span class="variable language_">this</span>.<span class="property">fb</span>.<span class="title function_">array</span>([</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">fb</span>.<span class="title function_">control</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    ])</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="comment">// 动态表单添加</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">aliases</span>.<span class="title function_">push</span>(<span class="variable language_">this</span>.<span class="property">fb</span>.<span class="title function_">control</span>(<span class="string">&#x27;&#x27;</span>));</span><br></pre></td></tr></table></figure></li>
+<li>修改表单组的值<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">profileForm</span>.<span class="title function_">patchValue</span>(&#123;</span><br><span class="line">  <span class="attr">firstName</span>: <span class="string">&#x27;Tom&#x27;</span>,</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">street</span>: <span class="string">&#x27;123 Drew Street&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">ipv4Validator</span>(<span class="params">nameRe: <span class="built_in">RegExp</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">control</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> forbidden = nameRe.<span class="title function_">test</span>(control.<span class="property">value</span>);</span><br><span class="line">    <span class="keyword">return</span> forbidden ? <span class="literal">null</span> : &#123; <span class="attr">forbiddenName</span>: control.<span class="property">value</span> &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public profileForm = <span class="variable language_">this</span>.<span class="property">fb</span>.<span class="title function_">group</span>(&#123;</span><br><span class="line">    <span class="attr">firstName</span>: [<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">     [<span class="title class_">Validators</span>.<span class="property">required</span>, <span class="title function_">ipv4Validator</span>(<span class="regexp">/^((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.)&#123;3&#125;(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(?::(?:[0-9]|[1-9][0-9]&#123;1,3&#125;|[1-5][0-9]&#123;4&#125;|6[0-4][0-9]&#123;3&#125;|65[0-4][0-9]&#123;2&#125;|655[0-2][0-9]|6553[0-5]))?$/</span>)]</span><br><span class="line">    ]</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">http</span>.<span class="title function_">get</span>(<span class="string">&quot;url&quot;</span>)</span><br><span class="line">  .<span class="title function_">subscribe</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123; <span class="variable language_">console</span>.<span class="title function_">dir</span>(res); &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="post"><a href="#post" class="headerlink" title="post"></a>post</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">http</span>.<span class="title function_">post</span>(<span class="string">&quot;url&quot;</span>,params)</span><br><span class="line">  .<span class="title function_">subscribe</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(val); &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2>使用前先导入<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ts文件中</span></span><br><span class="line">@<span class="title class_">Component</span>(&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="attr">animations</span>: [</span><br><span class="line">    <span class="title function_">trigger</span>(<span class="string">&#x27;openClose&#x27;</span>, [</span><br><span class="line">      <span class="title function_">state</span>(<span class="string">&#x27;open&#x27;</span>, <span class="title function_">style</span>(&#123;</span><br><span class="line">        <span class="attr">height</span>: <span class="string">&#x27;200px&#x27;</span>,</span><br><span class="line">        <span class="attr">opacity</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">backgroundColor</span>: <span class="string">&#x27;yellow&#x27;</span></span><br><span class="line">      &#125;)),</span><br><span class="line">      <span class="title function_">state</span>(<span class="string">&#x27;closed&#x27;</span>, <span class="title function_">style</span>(&#123;</span><br><span class="line">        <span class="attr">height</span>: <span class="string">&#x27;100px&#x27;</span>,</span><br><span class="line">        <span class="attr">opacity</span>: <span class="number">0.8</span>,</span><br><span class="line">        <span class="attr">backgroundColor</span>: <span class="string">&#x27;blue&#x27;</span></span><br><span class="line">      &#125;)),</span><br><span class="line">      <span class="title function_">transition</span>(<span class="string">&#x27;open =&gt; closed&#x27;</span>, [</span><br><span class="line">        <span class="title function_">animate</span>(<span class="string">&#x27;0.5s&#x27;</span>)</span><br><span class="line">      ]),</span><br><span class="line">      <span class="title function_">transition</span>(<span class="string">&#x27;closed =&gt; open&#x27;</span>, [</span><br><span class="line">        <span class="title function_">animate</span>(<span class="string">&#x27;0.5s&#x27;</span>)</span><br><span class="line">      ]),</span><br><span class="line">    ]),</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">public isOpen = <span class="literal">true</span>;</span><br><span class="line"><span class="title function_">toggle</span>(<span class="params"></span>) &#123; <span class="variable language_">this</span>.<span class="property">isOpen</span> = !<span class="variable language_">this</span>.<span class="property">isOpen</span>; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- html文件中 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">&quot;toggle()&quot;</span>&gt;</span>切换<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> [@<span class="attr">openClose</span>]=<span class="string">&quot;isOpen ? &#x27;open&#x27; : &#x27;closed&#x27;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>angular基础 01</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://hitagi.site/posts/cb24f466/">https://hitagi.site/posts/cb24f466/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>ReCreyed</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2022-03-19</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2022-04-12</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/angular/">angular</a></div><div class="post_share"></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://img.hitagi.site/reward-wx.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/reward-wx.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://img.hitagi.site/reward-ali.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/reward-ali.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/41495c75/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">毕业设计技术总结 03</div></div></a></div><div class="next-post pull-right"><a href="/posts/7446b8e7/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">three.js实现3d地球</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/c9b1734a/" title="多模块angular项目的搭建"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-01-26</div><div class="title">多模块angular项目的搭建</div></div></a></div><div><a href="/posts/7446b8e7/" title="three.js实现3d地球"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2022-04-12</div><div class="title">three.js实现3d地球</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/avatar-1.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ReCreyed</div><div class="author-info__description">不可结缘  徒增伤悲</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/recreyed" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:recreyed@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-text">组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E6%A7%BD"><span class="toc-text">插槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B6%E5%AD%90%E4%BC%A0%E5%80%BC"><span class="toc-text">父子传值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%88%B6%E4%BC%A0%E5%AD%90-Input"><span class="toc-text">父传子@Input</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E4%BC%A0%E7%88%B6EventEmitter"><span class="toc-text">子传父EventEmitter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E4%BC%A0%E7%88%B6%E6%A8%A1%E6%9D%BF%E5%BC%95%E7%94%A8-%E6%8E%A8%E8%8D%90"><span class="toc-text">子传父模板引用(推荐)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E4%BC%A0%E7%88%B6-ViewChild-%E6%8E%A8%E8%8D%90"><span class="toc-text">子传父@ViewChild(推荐)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">插值表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E9%81%93"><span class="toc-text">管道</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4"><span class="toc-text">指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B%E6%8C%87%E4%BB%A4"><span class="toc-text">结构型指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%9E%8B%E6%8C%87%E4%BB%A4"><span class="toc-text">属性型指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A9%B1%E5%8A%A8%E8%A1%A8%E5%8D%95"><span class="toc-text">模板驱动表单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1"><span class="toc-text">路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-text">表单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%AA%E8%A1%A8%E5%8D%95"><span class="toc-text">单个表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E7%BB%84"><span class="toc-text">表单组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81"><span class="toc-text">表单验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82"><span class="toc-text">请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#get"><span class="toc-text">get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#post"><span class="toc-text">post</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-text">动画</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By ReCreyed</div><div class="footer_custom_text">Violet Evergarden</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://npm.elemecdn.com/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://npm.elemecdn.com/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://npm.elemecdn.com/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = new Waline(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://comment.hitagi.site',
+      path: location.pathname,
+      visitor: false,
+      dark: 'html[data-theme="dark"]'
+    }, {"imageUploader":false}))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else getScript('https://npm.elemecdn.com/@waline/client/dist/Waline.min.js').then(initWaline)
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const loadWaline = () => {
+      Waline.Widget.RecentComments({
+        serverURL: 'https://comment.hitagi.site',
+        count: 5
+      }).then(res => {
+        const walineArray = res.comments.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.insertedAt,
+          }
+        })
+        saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+        generateHtml(walineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+    }
+
+    if (typeof Waline === 'function') loadWaline() 
+    else getScript('https://npm.elemecdn.com/@waline/client/dist/Waline.min.js').then(loadWaline)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="/js/selectBg.js"></script><script async data-pjax src="/js/dark.js"></script><script src="https://npm.elemecdn.com/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div><!-- hexo injector body_end start --><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInUp');
+    arr[i].setAttribute('data-wow-duration', '0.5s');
+    arr[i].setAttribute('data-wow-delay', '0');
+    arr[i].setAttribute('data-wow-offset', '50');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInUp');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html>

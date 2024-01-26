@@ -1,0 +1,449 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>javaScript基础 01 | ReCreyed</title><meta name="keywords" content="javaScript"><meta name="author" content="ReCreyed"><meta name="copyright" content="ReCreyed"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="article">
+<meta property="og:title" content="javaScript基础 01">
+<meta property="og:url" content="https://hitagi.site/posts/8ea4b61c/">
+<meta property="og:site_name" content="ReCreyed">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.hitagi.site/202211142223334.jpg">
+<meta property="article:published_time" content="2022-01-26T15:06:00.000Z">
+<meta property="article:modified_time" content="2022-02-09T17:00:43.000Z">
+<meta property="article:author" content="ReCreyed">
+<meta property="article:tag" content="javaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.hitagi.site/202211142223334.jpg"><link rel="shortcut icon" href="/img/favicon.svg"><link rel="canonical" href="https://hitagi.site/posts/8ea4b61c/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playball&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'javaScript基础 01',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-02-09 17:00:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/avatar-1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 仓库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图片</span></a></li><li><a class="site-page child" href="/picmanage/"><i class="fa-fw fas fa-images"></i><span> 图床</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言信</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><canvas id="universe"></canvas><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.hitagi.site/202211142223334.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ReCreyed</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 仓库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图片</span></a></li><li><a class="site-page child" href="/picmanage/"><i class="fa-fw fas fa-images"></i><span> 图床</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言信</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">javaScript基础 01</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-26T15:06:00.000Z" title="发表于 2022-01-26 15:06:00">2022-01-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-02-09T17:00:43.000Z" title="更新于 2022-02-09 17:00:43">2022-02-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/">前端知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/8ea4b61c/#post-comment"><span class="waline-comment-count" id="/posts/8ea4b61c/"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-基础"><a href="#1-基础" class="headerlink" title="1. 基础"></a>1. 基础</h2><h3 id="1-1-javaScript-的组成"><a href="#1-1-javaScript-的组成" class="headerlink" title="1.1 javaScript 的组成"></a>1.1 javaScript 的组成</h3><p>ECMScirpt(js语法规范)、DOM(文档对象模型)、BOM(浏览器对象模型)</p>
+<h3 id="1-2-怎么写javaScript"><a href="#1-2-怎么写javaScript" class="headerlink" title="1.2 怎么写javaScript"></a>1.2 怎么写javaScript</h3><ol>
+<li>内部书写,script的标签中写js代码</li>
+<li>行内书写,js代码可以在html的标签中写</li>
+<li>外部引入,在js文件中可以写js代码,script的标签中的src路径引入</li>
+<li>还可以在控制台直接书写js代码<h2 id="2-变量"><a href="#2-变量" class="headerlink" title="2. 变量"></a>2. 变量</h2>声明变量 var<br><code>var age = 18;</code><br>控制台打印函数 <code>console.log()</code><h3 id="2-1-1-命名规则"><a href="#2-1-1-命名规则" class="headerlink" title="2.1.1 命名规则"></a>2.1.1 命名规则</h3></li>
+<li>由字母、数字、下划线、$符号组成，不能以数字开头</li>
+<li>不能是关键字和保留字，例如：for、while。</li>
+<li>区分大小写<h3 id="2-1-2-命名规范"><a href="#2-1-2-命名规范" class="headerlink" title="2.1.2 命名规范"></a>2.1.2 命名规范</h3></li>
+<li>变量名必须有意义</li>
+<li>遵守驼峰命名法。首字母小写，后面单词的首字母需要大写。<h3 id="2-2-基本数据类型："><a href="#2-2-基本数据类型：" class="headerlink" title="2.2 基本数据类型："></a>2.2 基本数据类型：</h3>隐式类型转化 例如：非纯数字字符串转化为数字类型，其值为NaN。</li>
+<li>number<ul>
+<li>整数：十进制(整数,小数)、十六进制(0x开头:0xa=10)、八进制(0开头:011=9)</li>
+<li>浮点数：浮点数都是近似的，保留几位小数即可</li>
+<li>科学计数法 (5e-5 = 5乘以10的-5次方) 无穷大:infinity</li>
+<li>NaN: 数字类型 代表非数字值。</li>
+</ul>
+</li>
+<li>string<ul>
+<li>length属性：字符串长度</li>
+<li>字符串拼接直接加号 ‘string1’+’string2’(数字加字符串,隐式转换为字符串)</li>
+</ul>
+</li>
+<li>boolean：true false</li>
+<li>undifined：声明但未赋值</li>
+<li>null：表示空<h3 id="2-3-复杂数据类型："><a href="#2-3-复杂数据类型：" class="headerlink" title="2.3 复杂数据类型："></a>2.3 复杂数据类型：</h3>Object:<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="title class_">Object</span>();<span class="comment">// 声明</span></span><br><span class="line">person.<span class="property">name</span> = <span class="string">&quot;zark&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> person = &#123;&#125;;<span class="comment">//另一种方式</span></span><br><span class="line">person.<span class="property">age</span> = <span class="number">15</span>;</span><br><span class="line"><span class="comment">// 或者直接赋值</span></span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    hobby : <span class="string">&quot;jump&quot;</span>,</span><br><span class="line">    height : <span class="number">170</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//json对象 格式要求:属性和属性值都加引号(非字符串值除外)</span></span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    <span class="string">&quot;hobby&quot;</span> : <span class="string">&quot;jump&quot;</span>,</span><br><span class="line">    <span class="string">&quot;height&quot;</span> : <span class="number">170</span></span><br><span class="line">&#125;;        </span><br></pre></td></tr></table></figure>
+<h3 id="2-4-数据类型转换"><a href="#2-4-数据类型转换" class="headerlink" title="2.4 数据类型转换"></a>2.4 数据类型转换</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">18</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> age);<span class="comment">//typeof 函数 查看数据类型</span></span><br><span class="line"><span class="comment">// number</span></span><br></pre></td></tr></table></figure></li>
+<li>转化为数字类型 函数Number()、parseInt()、parseFloat()<ul>
+<li>Number() 十六进制转化为十进制、空内容转化为0、非纯数字内容转化为NaN  </li>
+<li>parseInt() //转化成整数  </li>
+<li>parseFloat() //转化成浮点数</li>
+</ul>
+</li>
+<li>转化为字符串类型 函数toString()、String()(用于undifined和null)</li>
+<li>转化为布尔类型 Boolean()<ul>
+<li>0 NaN ‘’ undefined null会转换成false，其它都会转换成true。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-5-运算符"><a href="#2-5-运算符" class="headerlink" title="2.5 运算符"></a>2.5 运算符</h3><p>运算符优先级：<br>​括号&gt;点运算符&gt;一元运算符&gt; 算数运算符 &gt;关系运算符&gt;逻辑运算符 &gt;赋值运算符</p>
+<h2 id="2-流程控制"><a href="#2-流程控制" class="headerlink" title="2. 流程控制"></a>2. 流程控制</h2><h3 id="2-0-顺序结构"><a href="#2-0-顺序结构" class="headerlink" title="2.0 顺序结构"></a>2.0 顺序结构</h3><p>默认从上而下顺序执行</p>
+<h3 id="2-1-分支结构"><a href="#2-1-分支结构" class="headerlink" title="2.1 分支结构"></a>2.1 分支结构</h3><ul>
+<li>if判断<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">200</span> &gt;= age &gt;= <span class="number">65</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;老年&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (age &gt;= <span class="number">18</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;青年&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (age &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;未成年&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;输入有误&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+If语句会把后面的值隐式转换成布尔类型</li>
+</ul>
+<p>转换为true的有 ： 非空字符串 非0数字 true 任何对象<br>转换成false的有 ： 空字符串 0 false null undefined</p>
+<ul>
+<li>三元运算符 表达式1 ? 表达式2 : 表达式3;  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 满足条件执行第一条，不满足条件执行第二条</span></span><br><span class="line">age &gt;= <span class="number">18</span> ? <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;青年&quot;</span>) : <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;未成年&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>switch…case判断  </li>
+</ul>
+<p>使用严格比较，数据类型和数值都要相同;<br>switch里的值默认为字符串，有需要时应使用强制类型转换</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span> (<span class="title class_">Number</span>(day)) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;周一&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;周二&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;输入有误&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-循环结构"><a href="#2-2-循环结构" class="headerlink" title="2.2 循环结构"></a>2.2 循环结构</h3><ul>
+<li>while循环<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (a &lt;= <span class="number">10</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">    a++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>do…while循环<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line">    b++;</span><br><span class="line">&#125; <span class="keyword">while</span> (b &lt; <span class="number">10</span>);</span><br></pre></td></tr></table></figure></li>
+<li>for循环<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> c = <span class="number">1</span>; c &lt; <span class="number">10</span>; c++) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>continue和break</li>
+</ul>
+<p>break:立即跳出整个循环，即循环结束<br>continue:立即跳出当前循环，继续下一次循环</p>
+<h3 id="2-3-调试"><a href="#2-3-调试" class="headerlink" title="2.3 调试"></a>2.3 调试</h3><p>弹窗 <code>alert()</code><br>断点 <code>debugger</code><br>控制台打印 <code>console log()</code></p>
+<h2 id="3-数组"><a href="#3-数组" class="headerlink" title="3. 数组"></a>3. 数组</h2><p>定义：多个元素的有序集合。<br>数组的数据类型为 Object<br>数组元素可以为任意数据类型</p>
+<h3 id="3-1-创建"><a href="#3-1-创建" class="headerlink" title="3.1 创建"></a>3.1 创建</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-取值"><a href="#3-2-取值" class="headerlink" title="3.2 取值"></a>3.2 取值</h3><p>按下标取值，下标从0开始; 下标越界时，值为undifined;</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr2[<span class="number">5</span>]); <span class="comment">//此时取值超出数组长度，返回undifined</span></span><br><span class="line"><span class="comment">// for循环取值</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr2.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(arr2[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-修改"><a href="#3-3-修改" class="headerlink" title="3.3 修改"></a>3.3 修改</h3><ol>
+<li>直接赋值<code>arr2[3] = 7;</code></li>
+<li>数组方法: </li>
+</ol>
+<ul>
+<li>push: 从最后添加一个或多个值(返回值为数组的长度);</li>
+<li>pop: 从最后删除一个值(返回值为删除的值);</li>
+<li>unshift: 从开始添加一个或多个值(返回值为数组的长度)</li>
+<li>shift: 从开头删除一个值(返回值为删除的值);<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr2.<span class="title function_">push</span>(<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>);</span><br><span class="line">arr2.<span class="title function_">pop</span>();</span><br><span class="line">arr2.<span class="title function_">unshift</span>(<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>);</span><br><span class="line">arr2.<span class="title function_">shift</span>();</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-4-数组去重"><a href="#3-4-数组去重" class="headerlink" title="3.4 数组去重"></a>3.4 数组去重</h3><p>indexOf()返回数组中指定元素的第一个值的索引，不存在返回-1</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [];</span><br><span class="line"><span class="comment">// 第一种方法</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr1.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr1.<span class="title function_">indexOf</span>(arr1[i]) == i) &#123;</span><br><span class="line">        arr2.<span class="title function_">push</span>(arr1[i]);</span><br><span class="line">&#125;&#125;</span><br><span class="line"><span class="comment">// 第二种方法</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr1.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr2.<span class="title function_">indexOf</span>(arr1[i]) == -<span class="number">1</span>) &#123;</span><br><span class="line">        arr2.<span class="title function_">push</span>(arr1[i]);</span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-5-冒泡排序"><a href="#3-5-冒泡排序" class="headerlink" title="3.5 冒泡排序"></a>3.5 冒泡排序</h3><p>i控制轮数,j控制每轮比较次数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr3 = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr3.<span class="property">length</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; arr3.<span class="property">length</span> - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr3[j] &gt; arr3[j + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">var</span> temp = arr3[j];</span><br><span class="line">            arr3[j] = arr3[j + <span class="number">1</span>];</span><br><span class="line">            arr3[j + <span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-函数"><a href="#4-函数" class="headerlink" title="4. 函数"></a>4. 函数</h2><p>为了把一段特定功能的代码块封装起来，减少代码冗余</p>
+<h3 id="4-1-定义"><a href="#4-1-定义" class="headerlink" title="4.1 定义"></a>4.1 定义</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 具名函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">name1</span>(<span class="params"></span>) &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>); &#125;</span><br><span class="line"><span class="comment">// 匿名函数</span></span><br><span class="line"><span class="keyword">var</span> k = <span class="keyword">function</span> (<span class="params"></span>) &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>); &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-调用"><a href="#4-2-调用" class="headerlink" title="4.2 调用"></a>4.2 调用</h3><p><code>name1();</code></p>
+<h3 id="4-3-参数"><a href="#4-3-参数" class="headerlink" title="4.3 参数"></a>4.3 参数</h3><p>形参(定义时); 实参(调用时)<br>需要传递参数的函数在调用时没有传递实参,返回值为undifined</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">plus</span>(<span class="params">num1, num2</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(num1 + num2);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">plus</span>(<span class="number">2</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="4-4-返回值"><a href="#4-4-返回值" class="headerlink" title="4.4 返回值"></a>4.4 返回值</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">rate</span>(<span class="params">money</span>) &#123;</span><br><span class="line">    <span class="comment">//调用函数时不会显示,不写返回值默认返undifined,return只能有一个</span></span><br><span class="line">    <span class="keyword">return</span> money * <span class="number">3</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">rate</span>(<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<p>注意事项：定义在函数里的局部变量每次调用函数都会重新初始化；函数里使用外部全局变量，重复调用不会初始化</p>
+<h3 id="4-5-函数补充"><a href="#4-5-函数补充" class="headerlink" title="4.5 函数补充"></a>4.5 函数补充</h3><h4 id="4-5-1-函数的覆盖问题"><a href="#4-5-1-函数的覆盖问题" class="headerlink" title="4.5.1 函数的覆盖问题"></a>4.5.1 函数的覆盖问题</h4><ul>
+<li>两个同名的函数声明，后面覆盖前面的  </li>
+<li>两个同名的函数表达式，调用时执行紧挨着<strong>调用语句</strong>的上一条函数表达式<h4 id="4-5-2-函数的内置对象"><a href="#4-5-2-函数的内置对象" class="headerlink" title="4.5.2 函数的内置对象"></a>4.5.2 函数的内置对象</h4>arguments对象是比较特别的一个对象，实际上是函数的一个内置属性。<br>arguments对象是一个伪数组; arguments数组中前几个元素是函数的参数</li>
+<li>arguments.callee：函数的本身</li>
+<li>arguments.callee.name:函数的名字</li>
+<li>arguments.callee.length:形参的个数</li>
+<li>arguments.length：实参的个数<h4 id="4-5-3-自执行函数"><a href="#4-5-3-自执行函数" class="headerlink" title="4.5.3 自执行函数"></a>4.5.3 自执行函数</h4>可以通过给匿名函数本身加括号的方式来一次性调用匿名函数，称为自执行函数<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="number">123</span>);  </span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h4 id="4-5-4-函数的数据类型"><a href="#4-5-4-函数的数据类型" class="headerlink" title="4.5.4 函数的数据类型"></a>4.5.4 函数的数据类型</h4>函数是一种数据类型 名为function;可以被用作参数使用<h2 id="5-对象"><a href="#5-对象" class="headerlink" title="5. 对象"></a>5. 对象</h2>任何事物都可以是对象，可以使用对象简化多参数的函数<h4 id="5-1-创建对象的方法"><a href="#5-1-创建对象的方法" class="headerlink" title="5.1 创建对象的方法"></a>5.1 创建对象的方法</h4></li>
+</ul>
+<ol>
+<li>字面量<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;	<span class="attr">name</span>: <span class="string">&quot;zs&quot;</span>,	<span class="attr">age</span>: <span class="number">18</span> &#125;</span><br></pre></td></tr></table></figure></li>
+<li>new Object ()方法<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="title class_">Object</span> ();</span><br><span class="line">obj.<span class="property">name</span> = <span class="string">&quot;zs&quot;</span>;</span><br><span class="line">obj.<span class="property">age</span> = <span class="number">19</span>;</span><br></pre></td></tr></table></figure></li>
+<li>工厂函数<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params">age, name</span>) &#123;</span><br><span class="line"><span class="comment">//注意规范：函数名首字母大写</span></span><br><span class="line">    <span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">    obj.<span class="property">name</span> = name;</span><br><span class="line">    obj.<span class="property">age</span> = age;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>自定义构造函数<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params">name, age</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&#x27;zs&#x27;</span>, <span class="number">22</span>);</span><br></pre></td></tr></table></figure>
+this：构造函数在被调用，用来创建对象时，this指向该对象<h4 id="5-2-操作对象的属性"><a href="#5-2-操作对象的属性" class="headerlink" title="5.2 操作对象的属性"></a>5.2 操作对象的属性</h4></li>
+</ol>
+<ul>
+<li>取得对象的属性<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;	<span class="attr">name</span>: <span class="string">&quot;zs&quot;</span>,	<span class="attr">age</span>: <span class="number">18</span>, <span class="number">1</span>: <span class="string">&quot;shuzi&quot;</span>&#125;</span><br><span class="line"><span class="comment">// 取得单个属性时</span></span><br><span class="line">obj[<span class="string">&quot;name&quot;</span>]</span><br><span class="line">obj.<span class="property">age</span></span><br><span class="line"><span class="comment">// 给对象增加属性</span></span><br><span class="line">obj[variable] = <span class="string">&quot;value&quot;</span>;</span><br><span class="line">obj.<span class="property">string</span> = <span class="string">&quot;value&quot;</span>;</span><br><span class="line"><span class="comment">// 通过遍历的方式</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123; </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(obj[key]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除对象属性  delete 属性名.属性值  </span></span><br><span class="line"><span class="keyword">delete</span> obj.<span class="property">name</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="5-3-数组去重-利用对象属性"><a href="#5-3-数组去重-利用对象属性" class="headerlink" title="5.3 数组去重:利用对象属性"></a>5.3 数组去重:利用对象属性</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [];</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr1.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!obj[arr1[i]]) &#123;</span><br><span class="line">    arr2.<span class="title function_">push</span>(arr1[i])</span><br><span class="line">    obj[arr1[i]] = <span class="number">1</span>;</span><br><span class="line">&#125;&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr2);</span><br></pre></td></tr></table></figure>
+<h2 id="6-预解析-作用域-报错"><a href="#6-预解析-作用域-报错" class="headerlink" title="6. 预解析/作用域/报错"></a>6. 预解析/作用域/报错</h2><h3 id="6-1-预解析"><a href="#6-1-预解析" class="headerlink" title="6.1 预解析"></a>6.1 预解析</h3>JavaScript引擎在对JavaScript代码进行解释执行之前，会对JavaScript代码进行预解析，将以关键字var和function开头的语句块提前进行处理<br>注意事项：var 仅预处理变量的声明，不包括赋值。<h4 id="6-1-1-特殊情况"><a href="#6-1-1-特殊情况" class="headerlink" title="6.1.1 特殊情况"></a>6.1.1 特殊情况</h4>当变量和函数同名时,只会对函数声明进行预解析，变量会被忽略<br>但是同名的变量和函数，变量会覆盖函数，导致函数无法调用<br>通俗来讲就是只要出现同名的函数和变量，优先对函数进行预解析。但没用，变量会覆盖函数，最终只有变量声明语句生效<h3 id="6-2-作用域"><a href="#6-2-作用域" class="headerlink" title="6.2 作用域"></a>6.2 作用域</h3><h4 id="6-2-1-全局作用域"><a href="#6-2-1-全局作用域" class="headerlink" title="6.2.1 全局作用域"></a>6.2.1 全局作用域</h4>直接写在 script 标签或 js 文件中的JS代码，都是全局作用域<br>全局对象 window  代表浏览器窗口<br>所有创建的变量、函数都是window对象的属性<h4 id="6-2-2-局部作用域（函数作用域）"><a href="#6-2-2-局部作用域（函数作用域）" class="headerlink" title="6.2.2 局部作用域（函数作用域）"></a>6.2.2 局部作用域（函数作用域）</h4>在函数内部的是局部作用域，代码只在函数的内部起作用<br>函数执行完毕，局部作用域销毁<h3 id="6-5-javaScript报错"><a href="#6-5-javaScript报错" class="headerlink" title="6.5 javaScript报错"></a>6.5 javaScript报错</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">error</span>();<span class="comment">//错误信息</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">warn</span>();<span class="comment">//警告信息</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">info</span>();<span class="comment">//普通信息</span></span><br><span class="line"><span class="comment">// throw用于自定义错误信息,后接抛出自定义的错误信息</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x=<span class="title class_">NaN</span>) <span class="keyword">throw</span> <span class="string">&quot;错误&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>javaScript基础 01</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://hitagi.site/posts/8ea4b61c/">https://hitagi.site/posts/8ea4b61c/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>ReCreyed</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2022-01-26</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2022-02-09</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/javaScript/">javaScript</a></div><div class="post_share"></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://img.hitagi.site/reward-wx.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/reward-wx.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://img.hitagi.site/reward-ali.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/reward-ali.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/3a395d0a/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">css3基础</div></div></a></div><div class="next-post pull-right"><a href="/posts/17ade7a6/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">javaScript基础 02</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/17ade7a6/" title="javaScript基础 02"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-01-26</div><div class="title">javaScript基础 02</div></div></a></div><div><a href="/posts/60aad730/" title="javaScript基础 03"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-01-26</div><div class="title">javaScript基础 03</div></div></a></div><div><a href="/posts/fece4293/" title="javaScript基础 04"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/202211142223334.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-01-26</div><div class="title">javaScript基础 04</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.hitagi.site/avatar-1.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ReCreyed</div><div class="author-info__description">不可结缘  徒增伤悲</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/recreyed" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:recreyed@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80"><span class="toc-text">1. 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-javaScript-%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">1.1 javaScript 的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%80%8E%E4%B9%88%E5%86%99javaScript"><span class="toc-text">1.2 怎么写javaScript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8F%98%E9%87%8F"><span class="toc-text">2. 变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-text">2.1.1 命名规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="toc-text">2.1.2 命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-text">2.2 基本数据类型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-text">2.3 复杂数据类型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">2.4 数据类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">2.5 运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-text">2. 流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-0-%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="toc-text">2.0 顺序结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="toc-text">2.1 分支结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="toc-text">2.2 循环结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E8%B0%83%E8%AF%95"><span class="toc-text">2.3 调试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%95%B0%E7%BB%84"><span class="toc-text">3. 数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%88%9B%E5%BB%BA"><span class="toc-text">3.1 创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%8F%96%E5%80%BC"><span class="toc-text">3.2 取值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%BF%AE%E6%94%B9"><span class="toc-text">3.3 修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D"><span class="toc-text">3.4 数组去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-text">3.5 冒泡排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%87%BD%E6%95%B0"><span class="toc-text">4. 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">4.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E8%B0%83%E7%94%A8"><span class="toc-text">4.2 调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%8F%82%E6%95%B0"><span class="toc-text">4.3 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-text">4.4 返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E5%87%BD%E6%95%B0%E8%A1%A5%E5%85%85"><span class="toc-text">4.5 函数补充</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-%E5%87%BD%E6%95%B0%E7%9A%84%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98"><span class="toc-text">4.5.1 函数的覆盖问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-%E5%87%BD%E6%95%B0%E7%9A%84%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1"><span class="toc-text">4.5.2 函数的内置对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-%E8%87%AA%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="toc-text">4.5.3 自执行函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-4-%E5%87%BD%E6%95%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">4.5.4 函数的数据类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AF%B9%E8%B1%A1"><span class="toc-text">5. 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">5.1 创建对象的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">5.2 操作对象的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D-%E5%88%A9%E7%94%A8%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="toc-text">5.3 数组去重:利用对象属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%A2%84%E8%A7%A3%E6%9E%90-%E4%BD%9C%E7%94%A8%E5%9F%9F-%E6%8A%A5%E9%94%99"><span class="toc-text">6. 预解析&#x2F;作用域&#x2F;报错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E9%A2%84%E8%A7%A3%E6%9E%90"><span class="toc-text">6.1 预解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-1-%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="toc-text">6.1.1 特殊情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">6.2 作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-1-%E5%85%A8%E5%B1%80%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">6.2.1 全局作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-2-%E5%B1%80%E9%83%A8%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%89"><span class="toc-text">6.2.2 局部作用域（函数作用域）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-javaScript%E6%8A%A5%E9%94%99"><span class="toc-text">6.5 javaScript报错</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By ReCreyed</div><div class="footer_custom_text">Violet Evergarden</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://npm.elemecdn.com/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://npm.elemecdn.com/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://npm.elemecdn.com/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = new Waline(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://comment.hitagi.site',
+      path: location.pathname,
+      visitor: false,
+      dark: 'html[data-theme="dark"]'
+    }, {"imageUploader":false}))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else getScript('https://npm.elemecdn.com/@waline/client/dist/Waline.min.js').then(initWaline)
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const loadWaline = () => {
+      Waline.Widget.RecentComments({
+        serverURL: 'https://comment.hitagi.site',
+        count: 5
+      }).then(res => {
+        const walineArray = res.comments.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.insertedAt,
+          }
+        })
+        saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+        generateHtml(walineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+    }
+
+    if (typeof Waline === 'function') loadWaline() 
+    else getScript('https://npm.elemecdn.com/@waline/client/dist/Waline.min.js').then(loadWaline)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="/js/selectBg.js"></script><script async data-pjax src="/js/dark.js"></script><script src="https://npm.elemecdn.com/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div><!-- hexo injector body_end start --><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInUp');
+    arr[i].setAttribute('data-wow-duration', '0.5s');
+    arr[i].setAttribute('data-wow-delay', '0');
+    arr[i].setAttribute('data-wow-offset', '50');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInUp');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html>
